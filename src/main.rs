@@ -11,9 +11,25 @@ use felix_os::println;
 pub extern "C" fn _start() -> ! {
     println!("Hello World{}", "!");
 
+    felix_os::init(); // new
+
+    // // trigger a page fault
+    // unsafe {
+    //     *(0xdeadbeef as *mut u8) = 42;
+    // };
+
+    //  fn stack_overflow() {
+    //     stack_overflow(); // for each recursion, the return address is pushed
+    // }
+
+    // // trigger a stack overflow
+    // stack_overflow();
+    
+    // as before
     #[cfg(test)]
     test_main();
 
+    println!("It did not crash!");
     loop {}
 }
 
